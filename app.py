@@ -7,7 +7,7 @@ model = joblib.load("svm_fire_model.joblib")
 scaler = joblib.load("fire_scaler.joblib")
 
 # إنشاء التطبيق
-app = Flask(name)
+app = Flask(__name__)
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -23,5 +23,5 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
 # تشغيل التطبيق
-if name == "main":
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000, debug=True)
